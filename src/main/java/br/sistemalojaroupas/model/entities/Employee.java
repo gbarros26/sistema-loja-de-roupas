@@ -24,8 +24,7 @@ import org.dizitart.no2.objects.Indices;
 )
 public class Employee implements Serializable, TableContract {
     
-    private final static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    @Id
+    @Id 
     private NitriteId id;
     private String cpf;
     private String name;
@@ -34,8 +33,11 @@ public class Employee implements Serializable, TableContract {
     private Date birthDate;
     private Date admissionDate;
     private Double salary;
+    
     private Address address;
     private Office office;
+    
+    private final static SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     
     public Employee() {
     }
@@ -91,24 +93,24 @@ public class Employee implements Serializable, TableContract {
         return birthDate;
     }
     
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
-    }
-
     public String getFormattedBirthDate() {
         return sdf.format(birthDate);
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 
     public Date getAdmissionDate() {
         return admissionDate;
     }
     
-    public void setAdmissionDate(Date admissionDate) {
-        this.admissionDate = admissionDate;
-    }
-
     public String getFormattedAdmissionDate() {
         return sdf.format(admissionDate);
+    }
+
+    public void setAdmissionDate(Date admissionDate) {
+        this.admissionDate = admissionDate;
     }
 
     public Double getSalary() {
@@ -172,5 +174,8 @@ public class Employee implements Serializable, TableContract {
             getName()
         };
     }
-    
+
+    public boolean verificaSeSalarioMaiorQueZero() {
+        return this.salary > 0;
+    }
 }
